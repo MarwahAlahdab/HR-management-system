@@ -1,5 +1,9 @@
 
 //constructor
+
+let allEmployees=[];
+
+
 function Employee(employeeID,fullName,department,level,imageUrl,salary){
 
     this.employeeID=employeeID;
@@ -8,6 +12,7 @@ function Employee(employeeID,fullName,department,level,imageUrl,salary){
     this.level = level;
     this.imageUrl = imageUrl;
     this.salary = salary;
+    allEmployees.push(this)
 }
 
 
@@ -38,16 +43,18 @@ function Employee(employeeID,fullName,department,level,imageUrl,salary){
   }
 
 
-  Employee.prototype.calculateNetSalary = function(){
+  Employee.prototype.calculateNetSalary = function(salary){
 
     this.netSalary =this.salary - this.salary * 0.075; 
+
+    return this.netSalary;
   
   }
 
 
   Employee.prototype.render = function(){
 
-    document.querySelector('main').innerHTML=(`<main> employee name: ${this.fullName} salary:  ${this.calculateSalary()} </main>`)
+    document.querySelector('main').innerHTML+=(`<main> employee name: ${this.fullName} salary:  ${this.calculateNetSalary(this.salary)} </main>`)
   }
 
 
@@ -60,5 +67,9 @@ const employee6 = new Employee(1005, "Rana Saleh", "Development", "Junior");
 const employee7 = new Employee(1006, "Hadi Ahmad", "Finance", "Mid-Senior");
 
 
-employee1.calculateSalary();
-employee1.render();
+// employee1.calculateSalary();
+// employee1.render();
+for (let employee of allEmployees) {
+   employee.calculateSalary();
+  employee.render();
+}
