@@ -7,7 +7,7 @@ let allEmployees=[];
 
 function Employee(employeeID,fullName,department,level,imageUrl,salary){
 
-    this.employeeID=employeeID;
+    this.employeeID=this.getUniqueId();
     this.fullName = fullName;
     this.department=department;
     this.level = level;
@@ -68,7 +68,7 @@ function Employee(employeeID,fullName,department,level,imageUrl,salary){
   
 
     card.innerHTML = `
-    <img src="${this.imageUrl}"><br>
+    <img src="./assets/149071.png"><br>
       ${this.fullName} - ID:${this.employeeID}<br>
       <p>Department: ${this.department} - Level: ${this.level}<br>${this.calculateNetSalary(this.salary)}</p>
     `;
@@ -102,38 +102,36 @@ function Employee(employeeID,fullName,department,level,imageUrl,salary){
   }
   
 
-const employee1 = new Employee(1000, "Ghazi Samer", "Administration", "Senior","./assets/149071.png");
-const employee2 = new Employee(1001, "Lana Ali", "Finance", "Senior","./assets/149071.png");
-const employee3 = new Employee(1002, "Tamara Ayoub", "Marketing", "Senior","./assets/149071.png");
-const employee4 = new Employee(1003, "Safi Walid", "Administration", "Mid-Senior","./assets/149071.png");
-const employee5 = new Employee(1004, "Omar Zaid", "Development", "Senior","./assets/149071.png");
-const employee6 = new Employee(1005, "Rana Saleh", "Development", "Junior","./assets/149071.png");
-const employee7 = new Employee(1006, "Hadi Ahmad", "Finance", "Mid-Senior","./assets/149071.png");
+// const employee1 = new Employee(1000, "Ghazi Samer", "Administration", "Senior","./assets/149071.png");
+// const employee2 = new Employee(1001, "Lana Ali", "Finance", "Senior","./assets/149071.png");
+// const employee3 = new Employee(1002, "Tamara Ayoub", "Marketing", "Senior","./assets/149071.png");
+// const employee4 = new Employee(1003, "Safi Walid", "Administration", "Mid-Senior","./assets/149071.png");
+// const employee5 = new Employee(1004, "Omar Zaid", "Development", "Senior","./assets/149071.png");
+// const employee6 = new Employee(1005, "Rana Saleh", "Development", "Junior","./assets/149071.png");
+// const employee7 = new Employee(1006, "Hadi Ahmad", "Finance", "Mid-Senior","./assets/149071.png");
 
 
 // employee1.calculateSalary();
 // employee1.render();
-for (let employee of allEmployees) {
-   employee.calculateSalary();
-  employee.render();
-}
 
 
 
 
 
-
+let counter = 0;
 Employee.prototype.getUniqueId = function() {
-  let counter = 0;
 
-    counter++;
+  counter++;
     let empID = counter.toString().padStart(4, "0");
     return empID;
+ 
   };
 
 
 let form = document.getElementById("form")
 form.addEventListener('submit',formHandler);
+
+
 
 function formHandler (event){
 event.preventDefault();
@@ -143,10 +141,20 @@ let department = event.target.department.value;
 let level = event.target.level.value;
 let imageUrl = event.target.imageurl.value;
 
-console.log(fullName,department,level,imageUrl)
+// console.log(fullName,department,level,imageUrl)
+let employee = new Employee("", fullName, department, level, imageUrl, "");
+
+employee.calculateSalary();
+employee.getUniqueId();
+employee.render();
 
 }
 
 
 
+// for (let employee of allEmployees) {
+//   employee.getUniqueId();
+//    employee.calculateSalary();
+//   employee.render();
+// }
 
