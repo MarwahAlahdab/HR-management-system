@@ -66,9 +66,10 @@ function Employee(employeeID,fullName,department,level,imageUrl,salary){
     let card = document.createElement('div');
     card.classList.add('emp-card'); // give a class name
   
+    let imageSrc = this.imageUrl ? this.imageUrl : './assets/149071.png';
 
     card.innerHTML = `
-    <img src="./assets/149071.png"><br>
+    <img src=${imageSrc}><br>
       ${this.fullName} - ID:${this.employeeID}<br>
       <p>Department: ${this.department} - Level: ${this.level}<br>${this.calculateNetSalary(this.salary)}</p>
     `;
