@@ -113,3 +113,29 @@ header {
 #btn1:hover {
   background-color: #0E8388;
 }
+
+
+
+/* table */
+
+#table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#table th,
+#table td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+}
+
+#table th {
+  background-color: #0E8388;
+}
+
+
+.footerRow{
+
+  background-color: #0E8388;
+}
