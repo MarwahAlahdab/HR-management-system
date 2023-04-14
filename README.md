@@ -2,6 +2,9 @@
 
 
 # Changes for today:
-- added a form
-- applied some style
-- access user inputs using dom and event listener
+- added a table to accounting page to render depatments data
+- store employees data in local storage
+- render the data in accounting page from localStorage
+
+
+

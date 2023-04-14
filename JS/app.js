@@ -1,4 +1,3 @@
-
 //constructor
 
 let allEmployees=[];
@@ -7,8 +6,8 @@ let allEmployees=[];
 
 function Employee(employeeID,fullName,department,level,imageUrl,salary){
 
-    this.employeeID=this.getUniqueId();
-    this.fullName = fullName;
+  this.employeeID = getUniqueId();
+  this.fullName = fullName;
     this.department=department;
     this.level = level;
     this.imageUrl = imageUrl;
@@ -17,11 +16,13 @@ function Employee(employeeID,fullName,department,level,imageUrl,salary){
 }
 
 
-  Employee.prototype.calculateSalary = function(){
+
+
+  function calculateSalary(level){
 
     let min, max;
-
-    switch (this.level) {
+  
+    switch (level) {
       case "Senior":
         min = 1500;
         max = 2000;
@@ -35,22 +36,23 @@ function Employee(employeeID,fullName,department,level,imageUrl,salary){
         max = 1000;
         break;
       default:
-       break;
+        break;
     }
-
-
-    this.salary = Math.floor(Math.random() * (max - min + 1) + min);
-    return this.salary;
-  }
-
-
-  Employee.prototype.calculateNetSalary = function(salary){
-
-    this.netSalary =this.salary - this.salary * 0.075; 
-
-    return this.netSalary;
   
+    const salary = Math.floor(Math.random() * (max - min + 1) + min);
+    return salary;
   }
+  
+
+
+
+
+
+  function calculateNetSalary(salary){
+    return salary - salary * 0.075;
+  }
+  
+
 
 
   // Employee.prototype.render = function(){
@@ -60,73 +62,86 @@ function Employee(employeeID,fullName,department,level,imageUrl,salary){
 
 
 
-  Employee.prototype.render = function() {
+    function render() {
 
-    const container = document.getElementById('cards') 
-    let card = document.createElement('div');
-    card.classList.add('emp-card'); // give a class name
-  
-    let imageSrc = this.imageUrl ? this.imageUrl : './assets/149071.png';
-
-    card.innerHTML = `
-    <img src=${imageSrc}><br>
-      ${this.fullName} - ID:${this.employeeID}<br>
-      <p>Department: ${this.department} - Level: ${this.level}<br>${this.calculateNetSalary(this.salary)}</p>
-    `;
-    container.appendChild(card);
-
-
-
-
-    switch (this.department) {
-      case "Administration":
-        let administration = document.getElementById('Administration');
-        administration.appendChild(card);
-        
-        break;
-      case "Marketing": 
-      let marketing = document.getElementById('Marketing');
-      marketing.appendChild(card);
-        
-        break;
-      case "Development": 
-      let development = document.getElementById('Development');
-      development.appendChild(card);
-        break;
-      case "Finance": 
-      let finance = document.getElementById('Finance');
-      finance.appendChild(card);
-        break;
-    }
    
+
+
+    getEmployees();
+
+    if (allEmployees == null) {
+      allEmployees = [];
+    }
+
+   
+
+    for (let i = 0; i < allEmployees.length; i++) {
+      const container = document.getElementById('cards') 
+      let card = document.createElement('div');
+      card.classList.add('emp-card'); // give a class name
+    
+      let imageSrc = allEmployees[i].imageUrl ? allEmployees[i].imageUrl : './assets/149071.png';
+console.log(allEmployees[i].salary)
+      card.innerHTML = `
+      <img src=${imageSrc}><br>
+        ${allEmployees[i].fullName} <br>
+        <p>Department: ${allEmployees[i].department} - Level: ${allEmployees[i].level}<br>${calculateNetSalary(allEmployees[i].salary)}</p>
+      `;
+      container.appendChild(card);
+      // ${allEmployees[i].calculateNetSalary(allEmployees[i].salary)}
+//- ID:${allEmployees[i].employeeID}
+      switch (allEmployees[i].department) {
+        case "Administration":
+          let administration = document.getElementById('Administration');
+          administration.appendChild(card);
+          
+          break;
+        case "Marketing": 
+        let marketing = document.getElementById('Marketing');
+        marketing.appendChild(card);
+          
+          break;
+        case "Development": 
+        let development = document.getElementById('Development');
+        development.appendChild(card);
+          break;
+        case "Finance": 
+        let finance = document.getElementById('Finance');
+        finance.appendChild(card);
+          break;
+      }
+
+
+
+
+    }
+  
 
   }
   
 
-// const employee1 = new Employee(1000, "Ghazi Samer", "Administration", "Senior","./assets/149071.png");
-// const employee2 = new Employee(1001, "Lana Ali", "Finance", "Senior","./assets/149071.png");
-// const employee3 = new Employee(1002, "Tamara Ayoub", "Marketing", "Senior","./assets/149071.png");
-// const employee4 = new Employee(1003, "Safi Walid", "Administration", "Mid-Senior","./assets/149071.png");
-// const employee5 = new Employee(1004, "Omar Zaid", "Development", "Senior","./assets/149071.png");
-// const employee6 = new Employee(1005, "Rana Saleh", "Development", "Junior","./assets/149071.png");
-// const employee7 = new Employee(1006, "Hadi Ahmad", "Finance", "Mid-Senior","./assets/149071.png");
-
-
-// employee1.calculateSalary();
-// employee1.render();
 
 
 
 
 
-let counter = 0;
-Employee.prototype.getUniqueId = function() {
+  let counter = 0;
 
-  counter++;
-    let empID = counter.toString().padStart(4, "0");
-    return empID;
+// Employee.prototype.getUniqueId = function() {
+
+//   counter++;
+//     let empID = counter.toString().padStart(4, "0");
+//     return empID;
  
-  };
+//   };
+
+
+
+function getUniqueId() {
+  counter++;
+  let empID = counter.toString().padStart(4, "0");
+  return empID;
+}
 
 
 let form = document.getElementById("form")
@@ -135,7 +150,7 @@ form.addEventListener('submit',formHandler);
 
 
 function formHandler (event){
-event.preventDefault();
+// event.preventDefault();
 let fullName = event.target.fullname.value;
 
 let department = event.target.department.value; 
@@ -145,12 +160,32 @@ let imageUrl = event.target.imageurl.value;
 // console.log(fullName,department,level,imageUrl)
 let employee = new Employee("", fullName, department, level, imageUrl, "");
 
-employee.calculateSalary();
+employee.salary = calculateSalary(level);
+
+
+
+
+let jsonArr = JSON.stringify(allEmployees);
+localStorage.setItem('allEmployees',jsonArr)
+
+// employee.calculateSalary();
 employee.getUniqueId();
-employee.render();
 
 }
 
+
+
+function getEmployees() {
+  
+  let jsonArr = localStorage.getItem('allEmployees');
+  let dataFromStorage = JSON.parse(jsonArr);
+  // console.log(dataFromStorage)
+  allEmployees = dataFromStorage;
+
+}
+
+getEmployees();
+render();
 
 
 // for (let employee of allEmployees) {
