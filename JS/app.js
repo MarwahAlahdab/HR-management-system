@@ -187,7 +187,7 @@ function getEmployees() {
 getEmployees();
 render();
 
-
+//.
 // for (let employee of allEmployees) {
 //   employee.getUniqueId();
 //    employee.calculateSalary();
