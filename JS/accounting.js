@@ -150,6 +150,7 @@ function calNumOfEmps(department) {
 }
 
 function calAvgSalary(department) {
+  
   let totalSalary = 0;
   let numOfEmps = 0;
 
@@ -161,6 +162,10 @@ function calAvgSalary(department) {
   }
 
   let avgSalary = totalSalary / numOfEmps;
+
+  if (isNaN(avgSalary)) {
+    return 0;
+  } else 
   return avgSalary;
 }
 
@@ -176,7 +181,7 @@ function allDepAvg() {
     
   }
 
-  let avgSalary = totalSalary / 4;
+  let avgSalary = totalSalary / allEmployees.length;
   return avgSalary;
 }
 
@@ -196,4 +201,3 @@ function allDepTotal() {
 
 render();
 
-    

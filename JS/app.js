@@ -183,7 +183,6 @@ function getEmployees() {
   allEmployees = dataFromStorage;
 
 }
-
 getEmployees();
 render();
 
