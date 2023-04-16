@@ -128,11 +128,15 @@ function calTotal(department) {
   for (let i = 0; i < allEmployees.length; i++) {
     if (allEmployees[i].department === department) {
       // Update the total salary for the employee's department
-      departmentTotalSalary[department] += allEmployees[i].salary;
+
+        // if (isNaN(departmentTotalSalary[department])) {
+        //   return 0;
+        // } else 
+      departmentTotalSalary[department] += allEmployees[i].netSalary;
     }
   }
 
-  return departmentTotalSalary[department];
+  return Math.round(departmentTotalSalary[department]);
 }
 
 
