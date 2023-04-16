@@ -136,7 +136,7 @@ function calTotal(department) {
     }
   }
 
-  return Math.round(departmentTotalSalary[department]);
+  return Math.floor(departmentTotalSalary[department]);
 }
 
 
@@ -160,7 +160,7 @@ function calAvgSalary(department) {
 
   for (let i = 0; i < allEmployees.length; i++) {
     if (allEmployees[i].department === department) {
-      totalSalary += allEmployees[i].salary;
+      totalSalary += Math.floor(allEmployees[i].netSalary);
       numOfEmps++;
     }
   }
@@ -180,7 +180,7 @@ function allDepAvg() {
 
   for (let i = 0; i < allEmployees.length; i++) {
    
-      totalSalary += allEmployees[i].salary;
+      totalSalary += Math.floor(allEmployees[i].netSalary);
     
     
   }
@@ -195,7 +195,7 @@ function allDepTotal() {
 
   for (let i = 0; i < allEmployees.length; i++) {
    
-      totalSalary += allEmployees[i].salary;
+      totalSalary += Math.floor(allEmployees[i].netSalary);
     
     
   }

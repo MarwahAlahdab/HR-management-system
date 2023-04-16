@@ -187,7 +187,7 @@ function getEmployees() {
 }
 getEmployees();
 render();
-
+// localStorage.clear()
 //.
 // for (let employee of allEmployees) {
 //   employee.getUniqueId();
