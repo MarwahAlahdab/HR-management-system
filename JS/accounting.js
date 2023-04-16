@@ -129,9 +129,9 @@ function calTotal(department) {
     if (allEmployees[i].department === department) {
       // Update the total salary for the employee's department
 
-        // if (isNaN(departmentTotalSalary[department])) {
-        //   return 0;
-        // } else 
+        if (isNaN(departmentTotalSalary[department])) {
+          return 0;
+        } else 
       departmentTotalSalary[department] += allEmployees[i].netSalary;
     }
   }
