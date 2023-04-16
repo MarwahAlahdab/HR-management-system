@@ -4,7 +4,7 @@ let allEmployees=[];
 
 
 
-function Employee(employeeID,fullName,department,level,imageUrl,salary){
+function Employee(employeeID,fullName,department,level,imageUrl,salary ,netSalary){
 
   this.employeeID = getUniqueId();
   this.fullName = fullName;
@@ -12,6 +12,7 @@ function Employee(employeeID,fullName,department,level,imageUrl,salary){
     this.level = level;
     this.imageUrl = imageUrl;
     this.salary = salary;
+    this.netSalary = netSalary
     allEmployees.push(this)
 }
 
@@ -158,10 +159,10 @@ let level = event.target.level.value;
 let imageUrl = event.target.imageurl.value;
 
 // console.log(fullName,department,level,imageUrl)
-let employee = new Employee("", fullName, department, level, imageUrl, "");
+let employee = new Employee("", fullName, department, level, imageUrl, "","");
 
 employee.salary = calculateSalary(level);
-
+employee.netSalary = calculateNetSalary(employee.salary)
 
 
 
@@ -170,6 +171,7 @@ localStorage.setItem('allEmployees',jsonArr)
 
 // employee.calculateSalary();
 employee.getUniqueId();
+console.log(employee.netSalary)
 
 }
 
