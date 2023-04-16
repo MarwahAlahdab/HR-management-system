@@ -160,7 +160,7 @@ function calAvgSalary(department) {
 
   for (let i = 0; i < allEmployees.length; i++) {
     if (allEmployees[i].department === department) {
-      totalSalary += Math.floor(allEmployees[i].netSalary);
+      totalSalary += allEmployees[i].netSalary;
       numOfEmps++;
     }
   }
@@ -170,7 +170,7 @@ function calAvgSalary(department) {
   if (isNaN(avgSalary)) {
     return 0;
   } else 
-  return avgSalary;
+  return Math.floor(avgSalary);
 }
 
 
@@ -180,13 +180,13 @@ function allDepAvg() {
 
   for (let i = 0; i < allEmployees.length; i++) {
    
-      totalSalary += Math.floor(allEmployees[i].netSalary);
+      totalSalary += allEmployees[i].netSalary;
     
     
   }
 
   let avgSalary = totalSalary / allEmployees.length;
-  return avgSalary;
+  return Math.floor(avgSalary);
 }
 
 function allDepTotal() {
@@ -195,12 +195,12 @@ function allDepTotal() {
 
   for (let i = 0; i < allEmployees.length; i++) {
    
-      totalSalary += Math.floor(allEmployees[i].netSalary);
+      totalSalary += allEmployees[i].netSalary;
     
     
   }
 
-  return totalSalary;
+  return Math.floor(totalSalary);
 }
 
 render();
